@@ -15,9 +15,8 @@ L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 }).addTo(myMap);
  
   
-d3.csv('../Data/master.csv')
-  .then(function(data) {
-      console.log('suicide data:', data);
+d3.json('/api/suicides').then(function(data){
+        console.log('suicide data:', data);
   });
 
   

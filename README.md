@@ -37,3 +37,4 @@ o  Check for correlations among generations and gender
 ### Reason for choosing the topic: In light of the recent global pandemic, a lot of awareness has been brought to mental health. Although we do not have the most recent data(2020), this invoked our interest in suicide rates by country.
 
 ### Link to Repo: https://github.com/prasannarangam21/Project2
+

@@ -48,5 +48,17 @@ def suicide_by_country_by_year():
     return jsonify(output)
 
 
+@app.route("/api/suiciderate")    
+def suicide_rate_by_country():
+    session = Session(engine)
+    result1 = engine.execute("select country, max(suicides_no) as suicide_rate from suicidedata group by country order by suicide_rate  desc limit 10")
+    output1 = {}
+    for result in result1:
+        output1[result['country']] = int(result['suicide_rate'])
+    session.close()
+    print(output1)
+    return jsonify(output1)
+
+
 if __name__ == "__main__":
     app.run()
