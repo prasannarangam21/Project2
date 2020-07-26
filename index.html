@@ -4,16 +4,89 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Line Chart</title>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" 
+  integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <!-- local CSS -->
+  <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+  <title>Suicide rates analysis</title>
+ 
 </head>
 <body>
-  <div id="plot"></div>
-  <!-- D3.js CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.1/d3.min.js"></script>
-  
 
-  <script src="https://d3js.org/d3.v5.js"></script>
-  <script src="app.js"></script>
+  <nav class="navbar navbar-light bg-light">
+    <h1>Suicide Dashboard</h1>
+    <form class="form-inline">
+      <button class="btn btn-outline-success" type="button"><b>Main button</b></button>
+      <button class="btn btn-sm btn-outline-secondary" type="button">Smaller button</button>
+    </form>
+  </nav>
+  
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 col-md-12">
+        <div class="box">
+          <h1>Suicide Analysis </h1> 
+          <hr>
+          <p> 
+              
+          </p>
+        </div>
+      </div>
+    <div class="row"> 
+      <div class="box" id = "figures">
+        <h3> Visualizations </h3>
+        <hr>
+        <div class="row">
+          <div class="col-4">
+            <a href ="">
+              <div id="pie"></div>
+            </a>
+          </div>
+          <div class="col-4">
+            <a href ="">
+              <div id="scatter1"></div>
+            </a>
+          </div>
+          <div class="col-4">
+            <a href ="">
+            </a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <a href ="">
+              <div id="bar"></div>
+            </a>
+          </div>
+          <div class="col-4">
+            <a href ="">
+              <div id="lineDiv"></div>
+            </a>
+          </div>
+          <div class="col-4">
+            <a href ="">
+              <div id="scatter"></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- <script src="static/d3.js"></script> -->
+  <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" 
+  integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" 
+  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" 
+  integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <!-- D3.js CDN -->
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <!--Plotly JS-->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="../static/js/app.js"></script>
 </body>
 </html>
