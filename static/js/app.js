@@ -53,7 +53,6 @@ d3.json('/api/suicides_and_gdp').then(function (data) {
 });
 
 
-
 d3.json("/api/suicides_by_country").then(function (data) {
 
     var data = [
@@ -66,7 +65,6 @@ d3.json("/api/suicides_by_country").then(function (data) {
 
     Plotly.newPlot('bar', data);
 })
-
 
 
 d3.json('/api/suicides_per_100k_by_year').then(function (data) {
@@ -82,7 +80,6 @@ d3.json('/api/suicides_per_100k_by_year').then(function (data) {
     }
     Plotly.newPlot('lineDiv', data, layout);
 });
-
 
 
 // Suicides by Age
