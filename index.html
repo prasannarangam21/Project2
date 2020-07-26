@@ -9,9 +9,8 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   <!-- local CSS -->
-  <link rel="stylesheet" type="text/css" href="../static/css/style.css">
+  <link rel="stylesheet" type="text/css" href="static/css/style.css">
   <title>Suicide rates analysis</title>
-
 </head>
 
 <body>
@@ -30,7 +29,6 @@
           <h1>Suicide Analysis </h1>
           <hr>
           <p>
-
           </p>
         </div>
       </div>
@@ -40,42 +38,39 @@
           <hr>
           <div class="row">
             <div class="col-4">
-              <a href="../Images/suicides_by_gender.png">
-                <img src="{{ url_for('static', filename='images/suicides_by_gender.png') }}" alt="cable img"
+              <a href="Images/suicides_by_gender.png">
+                <img src="{{ url_for('static', filename='Images/suicides_by_gender.png') }}" alt="cable img"
                   class="img-fluid">
                 <div id="pie"></div>
               </a>
             </div>
             <div class="col-4">
-              <a href="../Images/suicide_vs_gdp.png">
-                <img src="{{ url_for('static', filename='images/suicide_vs_gdp.png') }}" alt="cable img"
+              <a href="Images/suicide_vs_gdp.png">
+                <img src="{{ url_for('static', filename='Images/suicide_vs_gdp.png') }}" alt="cable img"
                   class="img-fluid">
                 <div id="scatter1"></div>
               </a>
             </div>
-            <!-- <div class="col-4">
-              <a href="">
-              </a>
-            </div> -->
+
           </div>
           <div class="row">
             <div class="col-4">
-              <a href="../Images/top_ten_countries.png">
-                <img src="{{ url_for('static', filename='images/top_ten_countries.png') }}" alt="cable img"
+              <a href="Images/top_ten_countries.png">
+                <img src="{{ url_for('static', filename='Images/top_ten_countries.png') }}" alt="cable img"
                   class="img-fluid">
                 <div id="bar"></div>
               </a>
             </div>
             <div class="col-4">
-              <a href="../Images/suicides_by_year.png">
-                <img src="{{ url_for('static', filename='images/suicides_by_year.png') }}" alt="cable img"
+              <a href="Images/suicides_by_year.png">
+                <img src="{{ url_for('static', filename='Images/suicides_by_year.png') }}" alt="cable img"
                   class="img-fluid">
                 <div id="lineDiv"></div>
               </a>
             </div>
             <div class="col-4">
-              <a href="../Images/suicides_by_age.png">
-                <img src="{{ url_for('static', filename='images/suicides_by_age.png') }}" alt="cable img"
+              <a href="Images/suicides_by_age.png">
+                <img src="{{ url_for('static', filename='Images/suicides_by_age.png') }}" alt="cable img"
                   class="img-fluid">
                 <div id="scatter"></div>
               </a>
@@ -84,9 +79,6 @@
         </div>
       </div>
     </div>
-    <!-- The div that holds our map -->
-    <!--<div id="map"></div> -->
-    <!--<div class="d3-geomap" id="map"></div> -->
 
     <!-- Optional JavaScript -->
 
