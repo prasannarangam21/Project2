@@ -15,21 +15,28 @@ var greymap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{
   accessToken: API_KEY
 }).addTo(myMap);
 
-d3.json("https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json", function (countriesData) {
-  console.log(countriesData);
+// Getting JSON countries data from the below URL
+d3.json("https://raw.githubusercontent.com/datasets/geo-countries/master/data/countries.geojson", function (countriesData) {
+
   // Perform a GET request to the query URL
   d3.json("http://127.0.0.1:5000/api/suicides_by_country", function (data) {
-    console.log('suicide data', data);
+
     var country = Object.keys(data)
     var suicides = Object.values(data)
 
-    function radius(suicides) {
-      if (suicides === 0) {
-        return 1;
-      }
-      return suicides;
-    }
+    countriesData.features.forEach(function (country) {
+      var countryCode = country.properties.ISO_A3;
+      var countryName = country.properties.ADMIN;
 
+      if (countryCode in data) {
+        country.properties.suicides = data[countryCode].suicides
+      }
+      else {
+        country.properties.suicides = -1;
+      }
+    })
+
+    console.log(data);
     function color(suicides) {
       switch (true) {
         case suicides >= 100000:
@@ -40,46 +47,35 @@ d3.json("https://raw.githubusercontent.com/johan/world.geo.json/master/countries
           return '#fe522a';
         case suicides >= 100:
           return '#fe9882';
-        default:
+        case suicides >= 1:
           return '#ffded5';
+        default:
+          return '#ffffb2';
 
       }
     }
-    countriesData.features.forEach(function(country){
-      var countryName = country.properties.name;
-      
-      if(countryName in data){
-        country.properties.suicides = data[countryName]
-      } 
-      console.log(countryName)
-    })
-    
     //  Create a new choropleth layer
     var geojson = L.choropleth(countriesData, {
       // Define what  property in the features to use
-    valueProperty: "suicides",
+      valueProperty: "suicides",
+      // Set color scale
+      scale: ["#ffffb2", "#b10026"],
+      // Number of breaks in step range
+      steps: 10,
+      // q for quartile, e for equidistant, k for k-means
+      mode: "q",
+      style: {
+        // Border color
+        color: "#fff",
+        weight: 1,
+        fillOpacity: 0.8
+      },
 
-    // Set color scale
-    scale: ["#ffffb2", "#b10026"],
-
-    // Number of breaks in step range
-    steps: 10,
-
-    // q for quartile, e for equidistant, k for k-means
-    mode: "q",
-    style: {
-      // Border color
-      color: "#fff",
-      weight: 1,
-      fillOpacity: 0.8
-    },
-
-    // Binding a pop-up to each layer
-    onEachFeature: function(feature, layer) {
-      layer.bindPopup("Country: " + feature.properties.name + "<br>" + "No of Suicides:" + 
-         feature.properties.suicides);
-    }
-  }).addTo(myMap);
+      // Binding a pop-up to each layer
+      onEachFeature: function (feature, layer) {
+        layer.bindPopup("Country: " + feature.properties.ADMIN + "<br>" + "No of Suicides:" + feature.properties.suicides);
+      }
+    }).addTo(myMap);
 
     // Add legend to the map
     var legend = L.control({ position: 'bottomright' });
@@ -88,7 +84,7 @@ d3.json("https://raw.githubusercontent.com/johan/world.geo.json/master/countries
 
       var div = L.DomUtil.create('div', 'info legend'),
         suicides = [0, 10, 100, 1000, 10000, 100000];
-
+      div.innerHTML += "<b>Suicides Per Country</b>" + "<br>";
       // loop through our density intervals and generate a label with a colored square for each interval
       for (var i = 0; i < suicides.length; i++) {
 
@@ -101,16 +97,6 @@ d3.json("https://raw.githubusercontent.com/johan/world.geo.json/master/countries
     };
 
     legend.addTo(myMap);
-
-    function circleStyle(data) {
-      return {
-        fillColor: color(suicides),
-        radius: radius(suicides),
-        fillOpacity: 1,
-        weight: 0.5,
-        stroke: true
-      };
-    }
 
   });
 });
