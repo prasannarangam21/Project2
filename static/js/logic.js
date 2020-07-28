@@ -32,11 +32,12 @@ d3.json("https://raw.githubusercontent.com/datasets/geo-countries/master/data/co
         country.properties.suicides = data[countryCode].suicides
       }
       else {
-        country.properties.suicides = -1;
+        country.properties.suicides = " Data Not Available";;
       }
     })
 
     console.log(data);
+
     function color(suicides) {
       switch (true) {
         case suicides >= 100000:
@@ -47,10 +48,8 @@ d3.json("https://raw.githubusercontent.com/datasets/geo-countries/master/data/co
           return '#fe522a';
         case suicides >= 100:
           return '#fe9882';
-        case suicides >= 1:
-          return '#ffded5';
         default:
-          return '#ffffb2';
+          return '#ffded5';
 
       }
     }
@@ -59,7 +58,7 @@ d3.json("https://raw.githubusercontent.com/datasets/geo-countries/master/data/co
       // Define what  property in the features to use
       valueProperty: "suicides",
       // Set color scale
-      scale: ["#ffffb2", "#b10026"],
+      scale:  ["#ffffb2", "#b10026"],
       // Number of breaks in step range
       steps: 10,
       // q for quartile, e for equidistant, k for k-means
@@ -78,13 +77,13 @@ d3.json("https://raw.githubusercontent.com/datasets/geo-countries/master/data/co
     }).addTo(myMap);
 
     // Add legend to the map
-    var legend = L.control({ position: 'bottomright' });
+    var legend = L.control({ position: 'bottomleft' });
 
     legend.onAdd = function (map) {
 
       var div = L.DomUtil.create('div', 'info legend'),
         suicides = [0, 10, 100, 1000, 10000, 100000];
-      div.innerHTML += "<b>Suicides Per Country</b>" + "<br>";
+      div.innerHTML += "<b>Suicides Per Country</b><hr/>" + "<br>";
       // loop through our density intervals and generate a label with a colored square for each interval
       for (var i = 0; i < suicides.length; i++) {
 
