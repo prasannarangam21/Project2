@@ -54,6 +54,7 @@ html {
 }
 
 .legend {  
+  text: "Suicide Count";
   padding: 10px; 
   line-height: 18px; 
   color: #555; 
