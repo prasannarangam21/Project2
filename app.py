@@ -39,11 +39,16 @@ def suicides_by_country():
     session = Session(engine)
 
     # results = session.query(Suicide.country).all()
-    results = engine.execute("SELECT country, SUM(suicides_no) AS suicides FROM suicide_data GROUP BY country;")
+    results = engine.execute("SELECT c.iso_abr, s.country, s.suicides FROM country_data c JOIN (SELECT country, SUM(suicides_no) AS suicides FROM suicide_data GROUP BY country) s ON c.name = s.country;")
     print(results)
     output = {}
     for result in results:
-        output[result['country']] = int(result['suicides'])
+        output[result['iso_abr']] = {
+            'suicides': int(result['suicides']),
+            'iso_abr': result['iso_abr'],
+            'country': result['country']
+        }
+
     session.close()
     return jsonify(output)
 
@@ -120,6 +125,7 @@ def suicides_per_100k_by_year():
         output[result['year']] = float(result['avg'])
     session.close()
     return jsonify(output)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
