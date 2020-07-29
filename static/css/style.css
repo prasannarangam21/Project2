@@ -13,46 +13,59 @@ body {
   color:rgb(0,0,0);
 } */
 
-/* box in index.html */
+.exp-container {
+  background-color: white;
+  padding: 20px ;
+  margin: 30px 85px 50px 85px;
+  display: block;
+} 
+
+/* main container to store the visualizations and explanation */
 .container {
   background-color: white;
   padding: 20px ;
   margin-top: 30px;
   margin-bottom: 50px;
-  bottom: 30px;
   display: block;
 } 
 
-.bottom-container {
+/* top container to store the 7 visualization from which use can choose */
+.top-container {
   background-color: white;
+  height: 250px;
   padding: 10px ;
-  margin: 20px 10px 10px 10px;
   position: initial;
   bottom: 30px;
   display: block
 }
 
+.top-container .row {
+  margin-left: 50px;
+  margin-right:50px;
+}
+
+/* Analysis on the visualization */
+p.analysis {
+  margin-top: 7rem;
+  margin-bottom: 1rem;
+  margin-left: 4rem;
+  align-self: center;
+}
+
+/* Images of the charts in the top-container */
 img {
   width: 200px;
   max-height:300px;
   align-items: center;
 }
-
-
 img.img-fluid:hover {
   border: 1px dotted blue;
 }
-body {
-  padding: 0;
-  margin: 0;
-}
 
-#map,
-body,
-html {
-  height: 100%;
-}
+/* Height setting for the map*/
+#map { height: 600px; }
 
+/* Legend setting for the map*/
 .legend {  
   text: "Suicide Count";
   padding: 10px; 
