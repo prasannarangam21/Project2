@@ -1,5 +1,4 @@
 import numpy as np
-
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
@@ -28,10 +27,45 @@ def index():
     #"""Return the homepage."""
     return render_template("index.html")
 
-# @app.route("/index")
-# def index2():
-#     #"""Return the homepage."""
-#     return render_template("index.html")
+@app.route("/gender")
+def gender():
+    #"""Return the homepage."""
+    return render_template("gender.html")
+
+@app.route("/generation")
+def generation():
+    #"""Return the homepage."""
+    return render_template("generation.html")
+
+@app.route("/byCountry")
+def byCountry():
+    #"""Return the homepage."""
+    return render_template("byCountry.html")
+
+@app.route("/yearlyRates")
+def yearlyRates():
+    #"""Return the homepage."""
+    return render_template("yearlyRates.html")
+
+@app.route("/byAge")
+def byAge():
+    #"""Return the homepage."""
+    return render_template("byAge.html")
+
+@app.route("/gdp_scatter")
+def gdp_scatter():
+    #"""Return the homepage."""
+    return render_template("gdp_scatter.html")
+
+@app.route("/hdi_scatter")
+def hdi_scatter():
+    #"""Return the homepage."""
+    return render_template("hdi_scatter.html")
+
+@app.route("/map")
+def map():
+    #"""Return the homepage."""
+    return render_template("map.html")
 
 @app.route("/api/suicides_by_country")
 def suicides_by_country():
@@ -51,6 +85,20 @@ def suicides_by_country():
 
     session.close()
     return jsonify(output)
+
+@app.route("/api/suicides_by_TopTenCountry")
+def suicides_by_TopTenCountry():
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+
+    # results = session.query(Suicide.country).all()
+    results = engine.execute("SELECT country, SUM(suicides_no) AS suicides FROM suicide_data GROUP BY country ORDER By suicides DESC LIMIT 10;")
+    
+    output = {}
+    for result in results:
+        output[result['country']] = int(result['suicides'])
+    session.close()
+    return jsonify(output)    
 
 @app.route("/api/suicides_by_gender")
 def suicides_by_gender():
@@ -125,6 +173,39 @@ def suicides_per_100k_by_year():
         output[result['year']] = float(result['avg'])
     session.close()
     return jsonify(output)
+
+@app.route("/api/suicides_and_hdi")
+def suicides_and_hdi():
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+    # results = session.query(Suicide.country).all()
+    results = engine.execute("SELECT country, AVG(derivedtable.suicide_rates) AS suicides, AVG(derivedTable.hdi) AS hdi FROM (SELECT year, country, SUM(suicidesper100pop) AS suicide_rates, MAX(hdi_for_year) AS hdi FROM suicide_data WHERE hdi_for_year <>0 GROUP BY year, country ORDER BY year) AS derivedTable GROUP BY country ;")
+    
+    output = {}
+    for result in results:
+        output[result['country']] = {
+            'suicides': int(result['suicides']),
+            'hdi':float(result['hdi'])
+        }
+    session.close()
+    return jsonify(output)
+
+@app.route("/api/yearly_suicides_and_hdi")
+def yearly_suicides_and_hdi():
+    # Create our session (link) from Python to the DB
+    session = Session(engine)
+
+    # results = session.query(Suicide.country).all()
+    results = engine.execute("SELECT year, AVG(derivedTable.suicidesper100pop) AS suicide_rates, AVG(derivedTable.hdi) AS hdi FROM (SELECT country,year,SUM(suicidesper100pop) AS suicidesper100pop,MAX(hdi_for_year) AS hdi FROM suicide_data WHERE hdi_for_year <>0 GROUP BY country,year) AS derivedTable GROUP BY year")
+    
+    output = {}
+    for result in results:
+        output[result['year']] = {
+            'suicide_rates': int(result['suicide_rates']),
+            'hdi': float(result['hdi'])
+        }
+    session.close()
+    return jsonify(output)    
 
 
 if __name__ == '__main__':
