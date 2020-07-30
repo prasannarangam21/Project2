@@ -14,12 +14,12 @@ Cleaning and uploading the dataset into Database
 Data Exploration
 The goal of this data exploration process is to visualize the trends and patterns in the dataset available and observing the changes in patterns over the years by country, sex and gdp.
 Data Visualizations
-# Interactive choropleth map with hover – by city and suicide number
- # Line chart – number of suicides by age
- # Bar chart – Top 10 countries by number of suicides
- # Pie chart – Male vs Female suicide rate
- # Scatter plot – check for correlation between GDP and number of suicides
- # Scatter plot – Y- axis – beginning year of dataset, X-axis – ending year of our dataset
+ Interactive choropleth map with hover – by city and suicide number
+ Line chart – number of suicides by age
+ Bar chart – Top 10 countries by number of suicides
+ Pie chart – Male vs Female suicide rate
+ Scatter plot – check for correlation between GDP and number of suicides
+ Scatter plot – Y- axis – beginning year of dataset, X-axis – ending year of our dataset
 Data Analysis
 1)    We started with exploratory analysis and plotted each variable against suicide rate , just to discover that there were no strong correlations.
 2)    But we found out that even though none of the variables have a strong direct impact , altogether they might have an effect!
