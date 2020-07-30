@@ -6,9 +6,12 @@ from sqlalchemy import create_engine, func
 
 from flask import Flask, jsonify , render_template
 
-password ="prasu@123"
-rds_connection_string = f"postgres:{password}@localhost:5432/suicideDB"
-engine = create_engine(f'postgresql://{rds_connection_string}')
+#password =""
+#rds_connection_string = f"postgres:{password}@localhost:5432/suicideDB"
+conn = 'postgres://kenfdsronoxmvl:831328583d56d888d0a487e6ecbe1f903607d8acb31b5928953c9a2d97db5f4a@ec2-52-1-95-247.compute-1.amazonaws.com:5432/d8mun3mrvnl2q1'
+# engine = create_engine(f'postgresql://{rds_connection_string}')
+engine = create_engine(conn)
+
 
 # reflect an existing database into a new model
 Base = automap_base()
@@ -22,7 +25,7 @@ print(Base.classes.keys())
 
 app = Flask(__name__)
 
-db = SQLAlchemy(app)
+
 
 @app.route("/")
 def index():
