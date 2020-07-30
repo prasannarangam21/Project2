@@ -22,6 +22,8 @@ print(Base.classes.keys())
 
 app = Flask(__name__)
 
+db = SQLAlchemy(app)
+
 @app.route("/")
 def index():
     #"""Return the homepage."""
