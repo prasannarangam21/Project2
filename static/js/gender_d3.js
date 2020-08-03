@@ -62,6 +62,7 @@ d3.json('/api/yearly_suicides_by_gender').then(function(data){
             }
         })
     })
+    
     var trace1 = {
         x: year,
         y: male,
@@ -78,7 +79,10 @@ d3.json('/api/yearly_suicides_by_gender').then(function(data){
     
     var data = [trace1, trace2];
     
-    var layout = {barmode: 'group'};
+    var layout = {
+        barmode: 'group',
+        title: 'Suicides by Gender <br> from 1985 to 2016'
+    };
     
     Plotly.newPlot('line_gender', data, layout);
 })
