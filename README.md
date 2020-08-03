@@ -20,11 +20,11 @@ The goal of this data exploration process is to visualize the trends and pattern
 
 Data Visualizations:
 #### Interactive choropleth map with hover – by city and suicide number
-#### Line chart – number of suicides by age
-#### Bar chart – Top 10 countries by number of suicides
-#### Pie chart – Male vs Female suicide rate
-#### Scatter plot – check for correlation between GDP and number of suicides
-#### Scatter plot – Y- axis – beginning year of dataset, X-axis – ending year of our dataset
+#### Line chart – Sucides per 100k over the years(1997-2014)
+#### Bar chart – Suicides by country (top 10 countries)
+#### Pie charts – Suicide rates by Gender and Generation
+#### Bubble plot – Sucides by Age
+#### Scatter plots – Suicide vs GDP and Suicide vs HDI
 
 Data Analysis:
 1)    We started with exploratory analysis and plotted each variable against suicide rate , just to discover that there were no strong correlations.
