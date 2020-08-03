@@ -40,24 +40,21 @@
 
 // Suicides by Country
 d3.json('/api/suicides_by_country').then(function(data){
-  
   // Sort the objects in descending order
-  let sortedlist = Object.entries(data).sort((a, b) => b[1] - a[1]);
-
-  var keys = []
+  var sortedlist = Object.entries(data).sort((a, b) => b[1]['suicides'] - a[1]['suicides']);
+  console.log(sortedlist)
+  var countries = []
   var values = []
-
-  sortedlist.forEach(country=>{
-    keys.push(country[0]);
-    values.push(country[1])
+  sortedlist.forEach(result=>{
+    countries.push(result[1].country);
+    values.push(result[1].suicides)
   })
-
   var data = [
     {
       type: 'bar',
-      x: keys,
+      x: countries,
       y: values
-    },
+    }
   ];
   var layout = {
       title: "Suicides by Country",
