@@ -86,7 +86,7 @@
               
               <div class="col-3">
                 <a href ="hdi_scatter">
-                  <img src="{{ url_for('static', filename='images/suicides_vs_hdi.png') }}" alt="cable img" class="img-fluid">
+                  <img src="{{ url_for('static', filename='images/suicides_vs_hdi.png') }}" alt="cable img" class="img-fluid" style="border: 2px solid #2E86C1;">
                 </a>
               </div>
             </div>
@@ -105,14 +105,20 @@
   </div>
 
   <div class="container">
-    <h3> Visualizations </h3>
+    <h3> Suicides vs HDI</h3>
     <hr>
     <div class="row">
       <div class="col-7">
           <div id="scatter_hdi"></div>
       </div>
       <div class="col-5">
-        <p class = "analysis"></p>
+        <p class = "analysis">
+          The <strong>HDI</strong> (Human Development Index) is a summary measure of average achievement in key dimensions of human development: a long and healthy life, being knowledgeable and have a decent standard of living. 
+          <br>(source: UNDP human development reports)<br><br>
+          The scatter chart shows that the suicide rates are higher in the countries where the hdi is high.
+          <br><br>
+          If we look at the trends over time, the suicide rates decrease with the increasing level of hdi. The average HDI rose 0.808 steadily throught the years, while the suicide rates reached a peak (195 per 100k) in 1995 and dropped to 127 by 2016.
+        </p>
       </div>
     </div>
     <div class="row">

@@ -80,7 +80,7 @@
               </div>
               <div class="col-3">
                 <a href ="gdp_scatter">
-                  <img src="{{ url_for('static', filename='images/suicide_vs_gdp.png') }}" alt="cable img" class="img-fluid">
+                  <img src="{{ url_for('static', filename='images/suicide_vs_gdp.png') }}" alt="cable img" class="img-fluid" style="border: 2px solid #2E86C1;">
                 </a>
               </div>
               
@@ -115,7 +115,14 @@
         <div id="scatter_gdp"></div>
       </div>
       <div class="col-5">
-        <p class = "analysis"></p>
+        <p class = "analysis">
+          The scatter plot shows that there's no correlation between suicide rates and gdp per capita.
+          <br>
+          However, the line chart tells a different story. Except for the first ten years, the two line charts moved in an opposite direction which may imply that the GDP has an effect on the suicide rates.
+          <br>This negative correlation can be explained by the economic development as well as improved national mental health policies and infrastructures
+          <br><br>
+          To conclude, an economic growth without adequate infrastructures for mental health services is the key to lowering suicide rates.
+        </p>
       </div>
     </div>
     <div class="row">
