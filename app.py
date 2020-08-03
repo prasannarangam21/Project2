@@ -11,7 +11,7 @@ from flask import Flask, jsonify, render_template
 # rds_connection_string = f"postgres:{password}@localhost:5432/suicideDB"
 # engine = create_engine(f'postgresql://{rds_connection_string}')
 # conn = 'postgres://kenfdsronoxmvl:831328583d56d888d0a487e6ecbe1f903607d8acb31b5928953c9a2d97db5f4a@ec2-52-1-95-247.compute-1.amazonaws.com:5432/d8mun3mrvnl2q1'
- conn = 'postgres://tyzijuvvvkgkeh:7650c2bd5705673b09512441a44e04c578950ea7287773c503a69b471f0b85dd@ec2-52-207-124-89.compute-1.amazonaws.com:5432/dlr0m365fml8f'
+conn = 'postgres://tyzijuvvvkgkeh:7650c2bd5705673b09512441a44e04c578950ea7287773c503a69b471f0b85dd@ec2-52-207-124-89.compute-1.amazonaws.com:5432/dlr0m365fml8f'
 
 engine = create_engine(conn)
 
