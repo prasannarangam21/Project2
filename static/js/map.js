@@ -20,7 +20,7 @@ var myMap = L.map("map", {
   
     // Perform a GET request to the query URL
     d3.json("https://globalsuiciderates.herokuapp.com/api/suicides_by_country").then(function (data) {
-  
+     // d3.json("/api/suicides_by_country").then(function (data) {
       var country = Object.keys(data)
       var suicides = Object.values(data)
   
