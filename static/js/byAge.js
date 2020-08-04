@@ -1,3 +1,4 @@
+
 function plotBubble(labels, values){
   var trace1 = {
     x: labels,
@@ -44,24 +45,31 @@ d3.json('/api/suicides_by_age').then(function(data){
   plotBubble(bubbleLabels,bubbleValues)
 });
 // Adding country names to the select options
-d3.json('/api/suicides_by_age_country').then(function(data){
+d3.json('/api/yearly_suicides_by_age_country').then(function(data){
   Object.entries(data).forEach(function([key,value]){
     var option = "<option value='" + key + "'>" + key + "</option>";
     $("#selectCountry").append(option);
   })
 })
+for (var i = 1997; i < 2017; ++i) {
+      var option = "<option value='" + i + "'>" + i + "</option>";
+      $("#selectYear").append(option);
+  }
 
 $(document).ready(function(){
-  $('#selectCountry').change(function(){
+  $('#filter-btn').click(function(){
     event.preventDefault();
-    const country = $(':selected').val()
+    const country = $('#selectCountry option:selected').val()
     console.log("country",country)
-    d3.json('/api/suicides_by_age_country').then(function(data){
-        var selected_output = Object.entries(data).filter(([key,value])=> key==country)
-        console.log('selected',selected_output[0][1])
+    const year = $('#selectYear option:selected').val()
+    console.log("year",year)
+    d3.json('/api/yearly_suicides_by_age_country').then(function(data){
+        var selectedCountryOutput = Object.entries(data).filter(([key,value])=> key==country)[0][1]
+        var filteredOutput = selectedCountryOutput.filter(data=>data.year == year)
+        console.log('filteredOutput',filteredOutput)
         var labels = []
         var values = []
-        selected_output[0][1].forEach(output => {
+        filteredOutput.forEach(output => {
             labels.push(output.age)
             values.push(output.suicides)
         })
