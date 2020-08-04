@@ -1,5 +1,8 @@
-// function for plotting pie
-function plotPie(labels, values){
+// Load the data and plot the default pie chart
+d3.json('/api/suicides_by_gender').then(function(data){
+    // console.log(data) 
+    var labels = Object.keys(data)
+    var values = Object.values(data)
     var trace = {
         type: 'pie',
         labels: labels,
@@ -12,14 +15,6 @@ function plotPie(labels, values){
     }
     var config = {responsive: true}
     Plotly.newPlot('pie_gender', [trace], layout, config);
-}
-
-// Load the data and plot the default pie chart
-d3.json('/api/suicides_by_gender').then(function(data){
-    // console.log(data) 
-    var labels = Object.keys(data)
-    var values = Object.values(data)
-    plotPie(labels,values)
 });
 
 d3.json('/api/suicides_and_gdp').then(function(data){
@@ -199,7 +194,7 @@ d3.json('/api/suicides_and_hdi').then(function(data){
             title: 'Human Development Index'
         },
         yaxis: {
-            title: 'Suicides'
+            title: 'Suicides Per 100k'
         },
         title: 'Suicides vs HDI'
     }
@@ -218,12 +213,14 @@ $.ajax({
       var labels = Object.keys(data)
       var values = Object.values(data)
       var trace = {
-          type: 'pie',
-          labels: labels,
-          values: values
+        width: 450,
+        height: 450,
+        type: 'pie',
+        labels: labels,
+        values: values
       }   
       var layout = {
-          title:'Suicide Rates by Generation'
+        title:'Suicide Rates by Generation'
       }
       Plotly.newPlot('pie_generation', [trace], layout);
     }
