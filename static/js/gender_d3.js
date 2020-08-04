@@ -14,6 +14,11 @@ function plotPie(labels, values){
     Plotly.newPlot('pie_gender', [trace], layout, config);
 }
 
+for (var i = 1985; i < 2017; ++i) {
+    var option = "<option value='" + i + "'>" + i + "</option>";
+    $("#selectYear").append(option);
+}
+
 // Load the data and plot the default pie chart
 d3.json('/api/suicides_by_gender').then(function(data){
     // console.log(data) 
@@ -25,11 +30,10 @@ d3.json('/api/suicides_by_gender').then(function(data){
 // Add click event to plot the pie chart for the selected year
 $('.btn').click(function(){
     event.preventDefault();
-    const year = $('#inputYear').val()
+    const year = $('#selectYear').val()
     console.log("year ",year)
 
     d3.json('/api/yearly_suicides_by_gender').then(function(data){
-        console.log(data)
         var selected_output
         Object.entries(data).forEach(function([key,value]){
             if (key==year){
