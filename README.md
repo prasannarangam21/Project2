@@ -45,5 +45,3 @@ Data Visualization (Libraries used) – java script, D3.js, Plotly,JQuery with A
 Link to access the dashboard, which has the "Charts and Maps" page with the visualizations.If you click on any of the links from the slider and you can explore the charts. 
 https://globalsuiciderates.herokuapp.com
 
-Link to access the presentation slides:
-https://drive.google.com/drive/folders/1T7Qf0fnjsYJaI2wWm-yHGNv8xAZ1244d?usp=sharing
