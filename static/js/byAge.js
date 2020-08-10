@@ -39,8 +39,16 @@ function plotBubble(labels, values){
 // Plotting the default bubble plot
 d3.json('/api/suicides_by_age').then(function(data){
   console.log(data)
-  var bubbleLabels = Object.keys(data)
-  var bubbleValues = Object.values(data)
+  var orderedObject = {
+    '5-14 years': data['5-14 years'],
+    '15-24 years':data['15-24 years'],
+    '25-34 years': data['25-34 years'],
+    '35-54 years': data['35-54 years'],
+    '55-74 years': data['55-74 years'],
+    '75+ years': data['75+ years']
+  }
+  var bubbleLabels = Object.keys(orderedObject)
+  var bubbleValues = Object.values(orderedObject)
   // var bubbleSize = bubbleValues.map(x=>x/20000)
   plotBubble(bubbleLabels,bubbleValues)
 });
@@ -67,12 +75,23 @@ $(document).ready(function(){
         var selectedCountryOutput = Object.entries(data).filter(([key,value])=> key==country)[0][1]
         var filteredOutput = selectedCountryOutput.filter(data=>data.year == year)
         console.log('filteredOutput',filteredOutput)
-        var labels = []
-        var values = []
+
+        var newObject = {}
         filteredOutput.forEach(output => {
-            labels.push(output.age)
-            values.push(output.suicides)
+          newObject[output.age]= output.suicides
         })
+
+        var orderedObject = {
+          '5-14 years': newObject['5-14 years'],
+          '15-24 years':newObject['15-24 years'],
+          '25-34 years': newObject['25-34 years'],
+          '35-54 years': newObject['35-54 years'],
+          '55-74 years': newObject['55-74 years'],
+          '75+ years': newObject['75+ years']
+        }
+        console.log(orderedObject)
+        var labels = Object.keys(orderedObject)
+        var values = Object.values(orderedObject)
         plotBubble(labels, values)
     })
   })
