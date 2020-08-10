@@ -144,7 +144,7 @@ def yearly_suicides_by_generation_test():
     # Create our session (link) from Python to the DB
     session = Session(engine)
     
-    results = engine.execute("SELECT generation,year, sum(suicides_no) as numsuicides FROM suicide_data GROUP BY year, generation order by year")
+    results = engine.execute("SELECT generation,year, sum(suicidesper100pop) as numsuicides FROM suicide_data GROUP BY year, generation order by year")
     output = []
     for result in results:
         output.append({
